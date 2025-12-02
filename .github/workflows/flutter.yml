@@ -14,22 +14,32 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Disable Flutter cache (IMPORTANT)
+        run: |
+          echo "FLUTTER_HOME will be clean"
+          rm -rf $HOME/.flutter
+          rm -rf $HOME/.pub-cache
+
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Set up Flutter
+      - name: Set up Flutter (no cache)
         uses: subosito/flutter-action@v2
         with:
           channel: "stable"
+          cache: false
+
+      - name: Flutter doctor
+        run: flutter doctor -v
 
       - name: Flutter pub get
         run: flutter pub get
 
       - name: Build APK (Release)
-        run: flutter build apk --release --no-tree-shake-icons
+        run: flutter build apk --release --no-tree-shake-icons -v
 
       - name: Build Web (Release)
         run: flutter build web --release
