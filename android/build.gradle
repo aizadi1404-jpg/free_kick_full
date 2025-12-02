@@ -1,0 +1,7 @@
+// Top-level build file. Most of the configuration is provided by Flutter's Gradle plugin.
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}

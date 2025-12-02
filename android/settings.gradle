@@ -1,0 +1,14 @@
+pluginManagement {
+    includeBuild("../..")
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "temp_app"
+include(":app")
